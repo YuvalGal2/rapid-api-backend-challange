@@ -19,7 +19,7 @@ export class MovieController {
     @Get('movie?:imdbId')
     async findMovieById(@Req() request: Request) {
         const imdbId: any = request.query.imdbId ?? '';
-        let results = await this.movieService.findDetailsById(imdbId).pipe().toPromise();
+        const results = await this.movieService.findDetailsById(imdbId).pipe().toPromise();
         return await this.movieService.setSearchedValueInCache('movie-details', imdbId, results.data);
     }
 
