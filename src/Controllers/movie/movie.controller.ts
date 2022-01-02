@@ -12,7 +12,7 @@ export class MovieController {
     @Get('movies')
     async findAllByTitle(@Req() request: Request) {
         const movieTitle: any = request.query.title ?? '';
-        const results = await this.movieService.findAllByTitle(movieTitle).pipe().toPromise();
+        const results: Movie[] = await this.movieService.findAllByTitle(movieTitle).pipe().toPromise();
         const checkedResults = this.handleResultsNotFound(results);
         return await this.movieService.setSearchedValueInCache('search', movieTitle, checkedResults.data);
     }
